@@ -20,13 +20,13 @@ public class HomePage extends JPanel {
     private String currentPanel;
 
     public HomePage(Frame frame, CardLayout cardLayout, JPanel contentPanel) {
-        orderService = new OrderService(new JsonRepository<>("C:/Users/ahmet/AppData/Roaming/.myapp/orders.json", Order[].class));
-        cargoService = new CargoService(new JsonRepository<>("C:/Users/ahmet/AppData/Roaming/.myapp/cargos.json", Cargo[].class));
-        productService = new ProductService(new JsonRepository<>("C:/Users/ahmet/AppData/Roaming/.myapp/products.json", Product[].class));
-        receiverService = new ReceiverService(new JsonRepository<>("C:/Users/ahmet/AppData/Roaming/.myapp/receivers.json", Receiver[].class));
-        storeService = new StoreService(new JsonRepository<>("C:/Users/ahmet/AppData/Roaming/.myapp/stores.json", Store[].class));
 
-        setLayout(new BorderLayout());
+            orderService = new OrderService(new JsonRepository<>("/Users/sema/.myapp/orders.json", Order[].class));
+            cargoService = new CargoService(new JsonRepository<>("/Users/sema/.myapp/cargos.json", Cargo[].class));
+            productService = new ProductService(new JsonRepository<>("/Users/sema/.myapp/products.json", Product[].class));
+            receiverService = new ReceiverService(new JsonRepository<>("/Users/sema/.myapp/receivers.json", Receiver[].class));
+            storeService = new StoreService(new JsonRepository<>("/Users/sema/.myapp/stores.json", Store[].class));
+       setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 10, 10));
         add(buttonPanel, BorderLayout.WEST);
 
