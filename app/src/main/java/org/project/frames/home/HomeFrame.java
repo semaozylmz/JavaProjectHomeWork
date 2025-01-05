@@ -23,21 +23,33 @@ public class HomeFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(500, 400));
-        addComponentListener(
-                new ComponentAdapter() {
-                    @Override
-                    public void componentResized(ComponentEvent e) {
-                        int w = getWidth();
-                        int h = getHeight();
-                        setTitle(w + "x" + h);
-                        revalidate();
-                        repaint();
-                    }
-                }
-        );
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int w = getWidth();
+                int h = getHeight();
+                setTitle(w + "x" + h);
+                revalidate();
+                repaint();
+            }
+        });
+
+         // Light neutral background
+        setLayout(new BorderLayout());
+
         HomePage homePage =new HomePage();
-        add(homePage);
+        add(homePage, BorderLayout.CENTER);
+
         setVisible(true);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new HomeFrame();
+            }
+        });
     }
 }
 

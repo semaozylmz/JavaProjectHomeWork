@@ -65,7 +65,8 @@ public class Products extends JPanel {
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(Color.WHITE);
         JLabel productLabel = new JLabel(product.getName());
-        productLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        productLabel.setFont(new Font("Montserrat", Font.BOLD, 14));
+        productLabel.setForeground(Color.BLACK);
         productLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         topPanel.add(productLabel, BorderLayout.CENTER);
         
@@ -81,8 +82,8 @@ public class Products extends JPanel {
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.setBackground(Color.WHITE);
         JLabel priceLabel = new JLabel(String.format("$ %.2f", product.getPrice()));
-        priceLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        priceLabel.setForeground(new Color(0, 100, 0));
+        priceLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
+        priceLabel.setForeground(new Color(222, 49, 99));
         priceLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         bottomPanel.add(priceLabel, BorderLayout.CENTER);
         
@@ -93,7 +94,7 @@ public class Products extends JPanel {
         productPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                productPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 120, 215), 2));
+                productPanel.setBorder(BorderFactory.createLineBorder(new Color(222, 49, 99), 2));
                 productPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
@@ -124,11 +125,11 @@ public class Products extends JPanel {
         centerPanel.setBackground(Color.WHITE);
         
         JLabel plusLabel = new JLabel("+");
-        plusLabel.setFont(new Font("Arial", Font.BOLD, 60));
-        plusLabel.setForeground(new Color(0, 120, 215));
+        plusLabel.setFont(new Font("Montserrat", Font.BOLD, 60));
+        plusLabel.setForeground(new Color(222, 49, 99));
         
         JLabel textLabel = new JLabel("Add New Product");
-        textLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        textLabel.setFont(new Font("Montserrat", Font.BOLD, 14));
         textLabel.setForeground(new Color(100, 100, 100));
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -146,7 +147,7 @@ public class Products extends JPanel {
         productPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                productPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 120, 215), 2));
+                productPanel.setBorder(BorderFactory.createLineBorder(new Color(222, 49, 99), 2));
                 productPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 

@@ -3,6 +3,9 @@ package org.project.frames.home.home.panels;
 import org.project.models.Receiver;
 import org.project.services.ReceiverService;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
@@ -23,6 +26,7 @@ public class ReceiversPanel extends JPanel {
 
     private void initialize() {
         setLayout(null);
+        setBackground(new Color(227, 214, 214)); // Arka plan rengi
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -31,12 +35,21 @@ public class ReceiversPanel extends JPanel {
                 repaint();
             }
         });
+
         addReceivers();
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
+        buttonPanel.setBackground(new Color(227, 214, 214));
 
-        JButton addButton = new JButton("Add");
+
+        JButton addButton = createStyledButton("ADD RECEIVER", Color.WHITE, Color.BLACK);
+        addButton.setFont(new Font("Montserrat", Font.BOLD, 16));
+
+        addButton.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        addButton.setOpaque(true);
+        addButton.setBorder(BorderFactory.createEmptyBorder());
+
         addButton.addActionListener(e -> showAddDialog());
 
         buttonPanel.add(addButton);
@@ -58,16 +71,36 @@ public class ReceiversPanel extends JPanel {
     private JPanel createReceiverPanel(Receiver receiver) {
         JPanel receiverPanel = new JPanel(new BorderLayout());
         receiverPanel.setPreferredSize(new Dimension(RECEIVER_MAX_WIDTH, RECEIVER_HEIGHT));
-        receiverPanel.setBackground(new Color(100, 150, 100, 255));
+        receiverPanel.setBackground(new Color(255, 255, 255));
 
         JLabel receiverLabel = new JLabel("Receiver: " + receiver.getName() + " " + receiver.getSurname());
         receiverLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        receiverLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
+        receiverLabel.setForeground(Color.BLACK);
+        receiverLabel.setOpaque(false);
         receiverPanel.add(receiverLabel, BorderLayout.WEST);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        buttonPanel.setBackground(new Color(255, 255, 255));
+
         JButton detailsButton = new JButton("Details");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
+
+        // Buton yazı rengini siyah yap
+        detailsButton.setForeground(Color.BLACK);
+        updateButton.setForeground(Color.BLACK);
+        deleteButton.setForeground(Color.BLACK);
+
+        // Buton arka planını beyaz yap
+        detailsButton.setBackground(Color.WHITE);
+        updateButton.setBackground(Color.WHITE);
+        deleteButton.setBackground(Color.WHITE);
+
+        detailsButton.setOpaque(true);
+        updateButton.setOpaque(true);
+        deleteButton.setOpaque(true);
 
         detailsButton.addActionListener(e -> showDetailsDialog(receiver));
         updateButton.addActionListener(e -> showUpdateDialog(receiver));
@@ -83,6 +116,30 @@ public class ReceiversPanel extends JPanel {
         receiverPanel.add(buttonPanel, BorderLayout.EAST);
 
         return receiverPanel;
+    }
+
+    private JButton createStyledButton(String text, Color background, Color foreground) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Montserrat", Font.BOLD, 16));
+        button.setBackground(background);
+        button.setForeground(foreground);
+        button.setOpaque(true);
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(Color.BLACK);
+                button.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(background);
+                button.setForeground(foreground);
+            }
+        });
+        return button;
     }
 
     @Override
@@ -133,6 +190,11 @@ public class ReceiversPanel extends JPanel {
         formPanel.add(addressField);
 
         JButton addButton = new JButton("Add");
+        addButton.setForeground(Color.BLACK);
+        addButton.setBackground(new Color(207, 190, 190));
+        addButton.setOpaque(true);
+        addButton.setBorderPainted(false);
+
         addButton.addActionListener(e -> {
             String email = emailField.getText();
             String password = passwordField.getText();
@@ -178,6 +240,7 @@ public class ReceiversPanel extends JPanel {
         formPanel.add(addressField);
 
         JButton updateButton = new JButton("Update");
+        updateButton.setForeground(Color.BLACK);
         updateButton.addActionListener(e -> {
             String email = emailField.getText();
             String password = passwordField.getText();

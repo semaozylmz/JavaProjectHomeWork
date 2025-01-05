@@ -13,7 +13,8 @@ import java.util.List;
 public class Inventory extends JPanel {
     private int numRows;
     private static final int PRODUCT_MAX_WIDTH = 1000;
-    private static final int PRODUCT_HEIGHT = 60;
+    private static final int PRODUCT_HEIGHT = 80;
+    private static final int PRODUCT_GAP = 15;
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private List<Product> products;
@@ -41,7 +42,7 @@ public class Inventory extends JPanel {
 
     private void updateNumRows() {
         int panelHeight = getHeight();
-        numRows = Math.max(1, panelHeight / (PRODUCT_HEIGHT + 10));
+        numRows = Math.max(1, panelHeight / (PRODUCT_HEIGHT + PRODUCT_GAP));
     }
 
     private void addProducts() {
@@ -54,14 +55,14 @@ public class Inventory extends JPanel {
         JPanel productPanel = new JPanel();
         //50 1000
         productPanel.setPreferredSize(new Dimension(PRODUCT_MAX_WIDTH, PRODUCT_HEIGHT));
-        productPanel.setBackground(new Color(100 + (5 % 10) * 15, 100, 255));
-        productPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        productPanel.setBackground(new Color(234, 226, 226));
+        productPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         productPanel.setLayout(null);
 
         JLabel productLabel = new JLabel(product.getName().toUpperCase());
-        productLabel.setBounds(70, 3, 400, 30);
+        productLabel.setBounds(70, 10, 400, 30);
         JLabel productLabel2 = new JLabel(product.getDescription());
-        productLabel2.setBounds(70, 20, 400, 30);
+        productLabel2.setBounds(70, 40, 400, 30);
 
         JLabel imageLabel = new JLabel();
         File imageFile = new File(product.getImageUrl());
@@ -69,7 +70,7 @@ public class Inventory extends JPanel {
         image = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(image);
         imageLabel.setIcon(icon);
-        imageLabel.setBounds(0, 0, 60, 60);
+        imageLabel.setBounds(10, 10, 60, 60);
 
         productPanel.add(imageLabel);
         productPanel.add(productLabel2);
@@ -92,7 +93,7 @@ public class Inventory extends JPanel {
         int x = (getWidth() - PRODUCT_MAX_WIDTH) / 2;
 
         for (Component component : getComponents()) {
-            component.setBounds(x, y * (PRODUCT_HEIGHT + 10)+PRODUCT_HEIGHT/4 , PRODUCT_MAX_WIDTH, PRODUCT_HEIGHT);
+            component.setBounds(x, y * (PRODUCT_HEIGHT + PRODUCT_GAP)+PRODUCT_GAP , PRODUCT_MAX_WIDTH, PRODUCT_HEIGHT);
             y++;
         }
     }

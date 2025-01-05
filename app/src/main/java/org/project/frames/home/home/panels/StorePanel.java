@@ -9,6 +9,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java. awt. event. MouseAdapter;
+import java. awt. event. MouseEvent;
 
 public class StorePanel extends JPanel {
     private JTextField nameField;
@@ -48,7 +50,7 @@ public class StorePanel extends JPanel {
         storeInfoContainer.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         JLabel storeNameLabel = new JLabel(App.getCurrentStore().getName());
-        storeNameLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        storeNameLabel.setFont(new Font("Montserrat", Font.BOLD, 24));
         storeNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         storeInfoContainer.add(storeNameLabel);
@@ -65,9 +67,9 @@ public class StorePanel extends JPanel {
         JLabel phoneLabel = new JLabel("Phone: " + App.getCurrentStore().getPhone());
         JLabel descriptionLabel = new JLabel("Description: " + App.getCurrentStore().getDescription());
 
-        addressLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        phoneLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        addressLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
+        phoneLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
+        descriptionLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
 
         infoPanel.add(addressLabel);
         infoPanel.add(Box.createVerticalStrut(5));
@@ -82,7 +84,7 @@ public class StorePanel extends JPanel {
         storeDescriptionArea.setWrapStyleWord(true);
         storeDescriptionArea.setLineWrap(true);
         storeDescriptionArea.setEditable(false);
-        storeDescriptionArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        storeDescriptionArea.setFont(new Font("Montserrat", Font.PLAIN, 14));
         storeDescriptionArea.setBackground(new Color(245, 245, 245));
         storeDescriptionArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -96,11 +98,27 @@ public class StorePanel extends JPanel {
 
         // Add update button
         JButton updateButton = new JButton("Update Store");
-        updateButton.setFont(new Font("Arial", Font.BOLD, 16));
-        updateButton.setBackground(new Color(70, 130, 180));
-        updateButton.setForeground(Color.WHITE);
+        updateButton.setFont(new Font("Montserrat", Font.BOLD, 16));
+        updateButton.setBackground(new Color(227, 210, 210));
+        updateButton.setForeground(Color.BLACK);
         updateButton.setFocusPainted(false);
+        updateButton.setOpaque(true);
         updateButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+        updateButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                updateButton.setBackground(Color.BLACK);
+                updateButton.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                updateButton.setBackground(new Color(227, 210, 210));
+                updateButton.setForeground(Color.BLACK);
+            }
+        });
+
         updateButton.addActionListener(e -> showUpdateDialog());
         add(updateButton, BorderLayout.SOUTH);
     }
@@ -177,10 +195,11 @@ public class StorePanel extends JPanel {
 
         // Image Upload Button
         JButton uploadButton = new JButton("Upload Image");
-        uploadButton.setFont(new Font("Arial", Font.BOLD, 16));
-        uploadButton.setBackground(new Color(70, 130, 180));
-        uploadButton.setForeground(Color.WHITE);
+        uploadButton.setFont(new Font("Montserrat", Font.BOLD, 16));
+        uploadButton.setBackground(new Color(227, 210, 210));
+        uploadButton.setForeground(Color.BLACK);
         uploadButton.setFocusPainted(false);
+        uploadButton.setOpaque(true);
         uploadButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         uploadButton.addActionListener(e -> {
             try {
@@ -200,10 +219,11 @@ public class StorePanel extends JPanel {
         formPanel.add(uploadButton, gbc);
 
         JButton saveButton = new JButton("Save");
-        saveButton.setFont(new Font("Arial", Font.BOLD, 16));
-        saveButton.setBackground(new Color(70, 130, 180));
-        saveButton.setForeground(Color.WHITE);
+        saveButton.setFont(new Font("Montserrat", Font.BOLD, 16));
+        saveButton.setBackground(new Color(227, 210, 210));
+        saveButton.setForeground(Color.BLACK);
         saveButton.setFocusPainted(false);
+        saveButton.setOpaque(true);
         saveButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         saveButton.addActionListener(e -> {
             App.getCurrentStore().setName(nameField.getText());

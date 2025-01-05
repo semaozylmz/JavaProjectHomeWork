@@ -35,37 +35,67 @@ public class ProductDetail extends JPanel {
         imageLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);
-        imageLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        imageLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
         add(imageLabel);
 
         setImage(product.getImageUrl());
 
         nameLabel = new JLabel("Product Name: " + product.getName());
         nameLabel.setBounds(50, 360, 400, 30);
+        nameLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
         add(nameLabel);
 
         descriptionLabel = new JLabel( product.getDescription() );
         descriptionLabel.setBounds(50, 400, 400, 60);
-        //descriptionLabel.setLineWrap(true);
-        //descriptionLabel.setWrapStyleWord(true);
+        descriptionLabel.setFont(new Font("Montserrat", Font.PLAIN,14));
         add(descriptionLabel);
 
         priceLabel = new JLabel("Price: $" + product.getPrice());
         priceLabel.setBounds(50, 480, 400, 30);
+        priceLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
+        priceLabel.setForeground(new Color(222, 49,99));
         add(priceLabel);
 
         JButton editButton = new JButton("Edit");
         editButton.setBounds(200, 550, 100, 30);
+
+        editButton.setFont(new Font("Montserrat", Font.BOLD, 14));
+        editButton.setBackground(Color.WHITE);
+        editButton.setForeground(Color.BLACK);
+        editButton.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        editButton.setOpaque(true);
+        editButton.setBorder(BorderFactory.createEmptyBorder());
+
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
+        editButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editButton.setBackground(new Color(207, 190, 190));
+                editButton.setForeground(new Color(222, 49, 99)); }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editButton.setBackground(Color.WHITE);
+                editButton.setForeground(Color.BLACK);
+            }
+        });
+
         add(editButton);
 
         // Delete Button
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBounds(320, 550, 100, 30);
+
+        deleteButton.setFont(new Font("Montserrat", Font.BOLD, 14));
+        deleteButton.setBackground(Color.WHITE);
+        deleteButton.setForeground(Color.BLACK);
+        deleteButton.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        deleteButton.setOpaque(true);
+        deleteButton.setBorder(BorderFactory.createEmptyBorder());
+
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,6 +107,18 @@ public class ProductDetail extends JPanel {
                 }
             }
         });
+
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteButton.setBackground(new Color(207, 190, 190));
+                deleteButton.setForeground(new Color(222, 49, 99)); }
+            @Override public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteButton.setBackground(Color.WHITE);
+                deleteButton.setForeground(Color.BLACK);
+            }
+        });
+
         add(deleteButton);
         revalidate();
         repaint();

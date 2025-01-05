@@ -43,12 +43,27 @@ public class Cargos extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = createStyledButton("ADD", new Color(207, 190, 190), Color.BLACK);
+        addButton.setOpaque(true);
         addButton.addActionListener(e -> showAddDialog());
+
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                addButton.setBackground(Color.BLACK);
+                addButton.setForeground(Color.WHITE);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                addButton.setBackground(new Color(209, 191, 191));
+                addButton.setForeground(Color.BLACK);
+            }
+        });
 
         buttonPanel.add(addButton);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.setBounds(10, getHeight() - 60, CARGO_MAX_WIDTH, 40);
+        add(buttonPanel);
     }
 
     private void updateNumRows() {
@@ -65,16 +80,16 @@ public class Cargos extends JPanel {
     private JPanel createCargoPanel(Cargo cargo) {
         JPanel cargoPanel = new JPanel(new BorderLayout());
         cargoPanel.setPreferredSize(new Dimension(CARGO_MAX_WIDTH, CARGO_HEIGHT));
-        cargoPanel.setBackground(new Color(100, 150, 100, 255));
+        cargoPanel.setBackground(new Color(225, 207, 207, 255));
 
         JLabel cargoLabel = new JLabel("Cargo ID: " + cargo.getId());
         cargoLabel.setHorizontalAlignment(SwingConstants.LEFT);
         cargoPanel.add(cargoLabel, BorderLayout.WEST);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
-        JButton detailsButton = new JButton("Details");
-        JButton updateButton = new JButton("Update");
-        JButton deleteButton = new JButton("Delete");
+        JButton detailsButton = createStyledButton("Details", Color.WHITE, Color.BLACK);
+        JButton updateButton = createStyledButton("Update", Color.WHITE, Color.BLACK);
+        JButton deleteButton = createStyledButton("Delete",Color.WHITE, Color.BLACK);
 
         detailsButton.addActionListener(e -> showDetailsDialog(cargo));
         updateButton.addActionListener(e -> showUpdateDialog(cargo));
@@ -90,6 +105,27 @@ public class Cargos extends JPanel {
         cargoPanel.add(buttonPanel, BorderLayout.EAST);
 
         return cargoPanel;
+    }
+
+    private JButton createStyledButton(String text, Color background, Color foreground) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Montserrat", Font.BOLD, 14));
+        button.setBackground(background);
+        button.setForeground(foreground);
+        button.setOpaque(true);
+        button.setBorder(BorderFactory.createLineBorder(foreground, 1));
+        button.setFocusPainted(false);
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setBackground(Color.BLACK);
+                button.setForeground(Color.WHITE); }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                button.setBackground(background);
+                button.setForeground(foreground); } });
+        return button;
     }
 
     @Override
@@ -117,6 +153,7 @@ public class Cargos extends JPanel {
         contentArea.setEditable(false);
         contentArea.setLineWrap(true);
         contentArea.setWrapStyleWord(true);
+        contentArea.setFont(new Font("Montserrat", Font.PLAIN, 14));
         contentArea.setText(
                 "Order ID: " + order.getId() + "\n" +
                         "Is Delivered: " + cargo.isDelivered() + "\n\n" +
@@ -147,6 +184,11 @@ public class Cargos extends JPanel {
         formPanel.add(isDeliveredCheckBox);
 
         JButton addButton = new JButton("Add");
+        addButton.setForeground(Color.BLACK);
+        addButton.setBackground(new Color(207, 190, 190));
+        addButton.setOpaque(true);
+        addButton.setBorderPainted(false);
+
         addButton.addActionListener(e -> {
             Order order = (Order) orderComboBox.getSelectedItem();
             boolean isDelivered = isDeliveredCheckBox.isSelected();
@@ -177,12 +219,12 @@ public class Cargos extends JPanel {
         orderComboBox.setSelectedItem(cargo.getEntity());
         isDeliveredCheckBox.setSelected(cargo.isDelivered());
 
-        formPanel.add(new JLabel("Order:"));
+        formPanel.add(new JLabel("Order:", JLabel.RIGHT));
         formPanel.add(orderComboBox);
-        formPanel.add(new JLabel("Is Delivered:"));
+        formPanel.add(new JLabel("Is Delivered:", JLabel.RIGHT));
         formPanel.add(isDeliveredCheckBox);
 
-        JButton updateButton = new JButton("Update");
+        JButton updateButton = createStyledButton("Update", new Color(207, 190, 190), Color.BLACK);
         updateButton.addActionListener(e -> {
             Order order = (Order) orderComboBox.getSelectedItem();
             boolean isDelivered = isDeliveredCheckBox.isSelected();

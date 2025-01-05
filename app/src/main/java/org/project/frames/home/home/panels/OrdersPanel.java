@@ -33,6 +33,7 @@ public class OrdersPanel extends JPanel {
 
     private void initialize() {
         setLayout(null);
+        setBackground(new Color(240, 240, 240));
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -46,12 +47,32 @@ public class OrdersPanel extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = new JButton("ADD");
+        addButton.setOpaque(true);
+        addButton.setBackground(new Color(207, 190, 190));
+        addButton.setForeground(Color.BLACK);
+        addButton.setFocusPainted(false);
+        addButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        addButton.setContentAreaFilled(true);
+
+        addButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addButton.setBackground(Color.BLACK);
+                addButton.setForeground(Color.WHITE);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addButton.setBackground(new Color(207, 190, 190));
+                addButton.setForeground(Color.BLACK);
+            }
+        });
+
         addButton.addActionListener(e -> showAddDialog());
 
         buttonPanel.add(addButton);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        buttonPanel.setBounds(10, getHeight() - 60, ORDER_MAX_WIDTH, 40);
+        add(buttonPanel);
     }
 
     private void updateNumRows() {
@@ -68,13 +89,16 @@ public class OrdersPanel extends JPanel {
     private JPanel createOrderPanel(Order order) {
         JPanel orderPanel = new JPanel(new BorderLayout());
         orderPanel.setPreferredSize(new Dimension(ORDER_MAX_WIDTH, ORDER_HEIGHT));
-        orderPanel.setBackground(new Color(100, 150, 100, 255));
+        orderPanel.setBackground(new Color(200, 230, 200));
+        orderPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         JLabel orderLabel = new JLabel("Order ID: " + order.getId());
         orderLabel.setHorizontalAlignment(SwingConstants.LEFT);
         orderPanel.add(orderLabel, BorderLayout.WEST);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
+        buttonPanel.setOpaque(false);
+
         JButton detailsButton = new JButton("Details");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
@@ -94,6 +118,8 @@ public class OrdersPanel extends JPanel {
 
         return orderPanel;
     }
+
+
 
     @Override
     public void doLayout() {
@@ -134,6 +160,10 @@ public class OrdersPanel extends JPanel {
         formPanel.add(productComboBox);
 
         JButton addButton = new JButton("Add");
+        addButton.setBackground(new Color(207, 190, 190));
+        addButton.setOpaque(true);
+        addButton.setBorderPainted(false);
+
         addButton.addActionListener(e -> {
             Receiver receiver = (Receiver) receiverComboBox.getSelectedItem();
             Product product = (Product) productComboBox.getSelectedItem();

@@ -44,7 +44,7 @@ public class AddProduct extends JPanel {
         imageLabel.setText("Upload an image");
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);
-        imageLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        imageLabel.setFont(new Font("montserrat", Font.PLAIN, 14));
         add(imageLabel);
 
         imageLabel.addMouseListener(new MouseAdapter() {
@@ -66,7 +66,8 @@ public class AddProduct extends JPanel {
         });
 
         JLabel nameLabel = new JLabel("Product name:");
-        nameLabel.setBounds(50, 360, 100, 30);
+        nameLabel.setBounds(50, 360, 150, 30);
+        nameLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
         add(nameLabel);
 
         nameField = new JTextField();
@@ -74,17 +75,20 @@ public class AddProduct extends JPanel {
         add(nameField);
 
         JLabel descriptionLabel = new JLabel("Description:");
-        descriptionLabel.setBounds(50, 410, 100, 30);
+        descriptionLabel.setBounds(50, 410, 150, 30);
+        descriptionLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
         add(descriptionLabel);
 
         descriptionField = new JTextArea();
         descriptionField.setBounds(200, 410, 250, 60);
         descriptionField.setLineWrap(true);
         descriptionField.setWrapStyleWord(true);
+        descriptionField.setFont(new Font("Montserrat", Font.PLAIN, 14));
         add(descriptionField);
 
         JLabel priceLabel = new JLabel("Price:");
-        priceLabel.setBounds(50, 490, 100, 30);
+        priceLabel.setBounds(50, 490, 150, 30);
+        priceLabel.setFont(new Font("Montserrat", Font.BOLD, 16));
         add(priceLabel);
 
         priceField = new JTextField();
@@ -93,6 +97,7 @@ public class AddProduct extends JPanel {
 
         JButton saveButton = new JButton("Save");
         saveButton.setBounds(200, 550, 100, 30);
+        saveButton.setFont(new Font("Montserrat", Font.BOLD,14));
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,6 +137,25 @@ public class AddProduct extends JPanel {
                 }}
             }
         });
+
+        saveButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                saveButton.setBackground(new Color(207, 190, 190)); // Açık gri arka plan
+                saveButton.setForeground(new Color(222, 49, 99));  // Pembe yazı rengi
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                saveButton.setBackground(Color.WHITE);             // Beyaz arka plan
+                saveButton.setForeground(Color.BLACK);             // Siyah yazı rengi
+            }
+        });
+
+// saveButton bileşenini ekleme
+        add(saveButton);
+
+
         add(saveButton);
     }
 
