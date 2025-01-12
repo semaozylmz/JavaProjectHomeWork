@@ -1,27 +1,18 @@
 package org.project.models;
 
-import org.project.data.Identifiable;
+import org.project.models.interfaces.Identifiable;
 
-import java.util.UUID;
 
-public class Cargo implements Identifiable {
-    private Integer id;
+public class Cargo extends StoreItem implements Identifiable {
     private boolean isdelivered;
-    private Order entity;
+    private Integer orderId;
+    private boolean isReturned;
 
-    public Cargo(boolean isdelivered, Order entity) {
-        this.id = Math.abs(UUID.randomUUID().hashCode());
+    public Cargo(boolean isdelivered, Integer orderId) {
+        super();
+        this.isReturned = false;
         this.isdelivered = isdelivered;
-        this.entity = entity;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    public void setid(Integer id) {
-        this.id = id;
+        this.orderId = orderId;
     }
 
     public boolean isDelivered() {
@@ -32,20 +23,18 @@ public class Cargo implements Identifiable {
         isdelivered = delivered;
     }
 
-    public Order getEntity() {
-        return entity;
+    public boolean isReturned() {
+        return isReturned;
     }
 
-    public void setEntity(Order entity) {
-        this.entity = entity;
+    public void setReturned(boolean returned) {
+        isReturned = returned;
     }
 
-    @Override
-    public String toString() {
-        return "Cargo{" +
-                "id=" + id +
-                ", isdelivered=" + isdelivered +
-                ", entity=" + entity +
-                '}';
+    public Integer getOrderId() {
+        return orderId;
+    }
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

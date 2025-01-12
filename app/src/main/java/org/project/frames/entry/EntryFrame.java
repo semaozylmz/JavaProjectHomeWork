@@ -5,27 +5,13 @@ import org.project.frames.entry.register.RegisterPage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class EntryFrame extends JFrame {
     public EntryFrame() {
-        setTitle("App");
+        setTitle("Store Management System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(800, 600);
         setMinimumSize(new Dimension(500, 400));
-        addComponentListener(
-                new ComponentAdapter() {
-                    @Override
-                    public void componentResized(ComponentEvent e){
-                        int w = getWidth();
-                        int h = getHeight();
-                        setTitle(w + "x" + h);  // Window size display
-                        revalidate();
-                        repaint();
-                    }
-                }
-        );
         CardLayout cardLayout = new CardLayout();
         JPanel cardPanel = new JPanel(cardLayout);
 

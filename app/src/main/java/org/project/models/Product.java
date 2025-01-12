@@ -1,26 +1,28 @@
 package org.project.models;
 
-import org.project.data.Identifiable;
+import org.project.models.interfaces.Nameable;
+import org.project.models.interfaces.Describable;
+import org.project.models.interfaces.Imageable;
+import org.project.models.interfaces.Priceable;
 
-import java.util.UUID;
+public class Product extends StoreItem implements Nameable, Describable, Imageable, Priceable {
+    private String name;
+    private String description;
+    private String imageUrl;
+    private Double price;
+    private int productCount;
 
-public class Product implements Identifiable {
-    public Integer id;
-    public String name;
-    public String description;
-    public String sellerId;
-    public String imageUrl;
-    public Double price;
-    public int productCount;
-
-    public Product(String name, String description, String sellerId, String imageUrl, Double price, int productCount) {
-        this.id = Math.abs(UUID.randomUUID().hashCode());
+    public Product(String name, String description, int storeId, String imageUrl, Double price, int productCount) {
+        super();
         this.name = name;
         this.description = description;
-        this.sellerId = sellerId;
         this.imageUrl = imageUrl;
         this.price = price;
-        this.productCount=productCount;
+        this.productCount = productCount;
+    }
+
+    public Product() {
+        super();
     }
 
     public int getProductCount() {
@@ -29,19 +31,6 @@ public class Product implements Identifiable {
 
     public void setProductCount(int productCount) {
         this.productCount = productCount;
-    }
-
-    public Product(){
-        this.id = Math.abs(UUID.randomUUID().hashCode());
-
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -60,14 +49,6 @@ public class Product implements Identifiable {
         this.description = description;
     }
 
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -82,5 +63,16 @@ public class Product implements Identifiable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return  "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", price='" + price + '\'' +
+                ", productCount='" + productCount ;
     }
 }

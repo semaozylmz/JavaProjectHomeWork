@@ -7,31 +7,33 @@ import java.util.List;
 
 public class StoreService {
 
-    private JsonRepository<Store> storeRepo=new JsonRepository<>( Store[].class);
+    private static final JsonRepository<Store> storeRepo = new JsonRepository<>(Store[].class);
 
     public StoreService() {
     }
 
-    public boolean add(Store store) {
+    public static boolean add(Store store) {
         Store existingStore = getStoreByName(store.getName());
-        if(existingStore != null){
+        if (existingStore != null) {
             return false;
-        }
-        else{
+        } else {
             storeRepo.save(store);
             return true;
         }
     }
 
-    public void update(Store store) {
+    public static void update(Store store) {
         storeRepo.update(store);
     }
 
-    public void delete(Integer storeId){
+    public static void delete(Integer storeId) {
         storeRepo.delete(storeId);
     }
 
-    public Store getStoreById(int id) {
+    // A JsonRepository object is created using the Store parameter. Using this created object,
+    // all stores are held in a list, and this list is iterated with a for loop. If the ID of
+    // any store in the list matches the ID parameter entered in the method, that store is returned.
+    public static Store getStoreById(int id) {
         List<Store> stores = storeRepo.findAll();
         for (Store store : stores) {
             if (store.getId().equals(id)) {
@@ -41,7 +43,7 @@ public class StoreService {
         return null;
     }
 
-    public  Store getStoreByName(String name) {
+    public static Store getStoreByName(String name) {
         List<Store> stores = storeRepo.findAll();
         for (Store store : stores) {
             if (store.getName().equals(name)) {
@@ -50,16 +52,8 @@ public class StoreService {
         }
         return null;
     }
-    public List<Store> getAllStores(){
+
+    public static List<Store> getAllStores() {
         return storeRepo.findAll();
     }
-
-    public JsonRepository<Store> getStoreRepo() {
-        return storeRepo;
-    }
-
-    public void setStoreRepo(JsonRepository<Store> storeRepo) {
-        storeRepo = storeRepo;
-    }
-
 }

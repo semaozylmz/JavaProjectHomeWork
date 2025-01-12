@@ -1,52 +1,59 @@
 package org.project.models;
 
-import org.project.data.Identifiable;
+import org.project.models.interfaces.Identifiable;
 
-import java.util.UUID;
 
-public class Order<T1, T2> implements Identifiable {
-    private Integer id;
-    private T1 entity1;
-    private T2 entity2;
+public class Order extends StoreItem implements Identifiable {
+    private Integer productId;
+    private Integer receiverId;
+    private int quantity;
+    private String status;
 
-    public Order(T1 entity1, T2 entity2) {
-        this.id = Math.abs(UUID.randomUUID().hashCode());
-        this.entity1 = entity1;
-        this.entity2 = entity2;
+    public Order(Integer productId, Integer receiverId, int quantity) {
+        super();
+        this.productId = productId;
+        this.receiverId = receiverId;
+        this.quantity = quantity;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public T1 getEntity1() {
-        return entity1;
+    public Integer getReceiverId() {
+        return receiverId;
     }
 
-    public void setEntity1(T1 entity) {
-        this.entity1 = entity;
+    public void setReceiverId(Integer receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public T2 getEntity2() {
-        return entity2;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setEntity2(T2 entity2) {
-        this.entity2 = entity2;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", entity1=" + entity1 +
-                ", entity2=" + entity2 +
-                '}';
+        return "id=" + id +
+                ", productId=" + productId +
+                ", receiverId=" + receiverId +
+                ", quantity=" + quantity +
+                ", status=" + status +
+                ", storeId=" + storeId;
     }
 }
-

@@ -1,25 +1,24 @@
 package org.project.models;
 
-import org.project.data.Identifiable;
+import org.project.models.interfaces.Nameable;
+import org.project.models.interfaces.Contactable;
+import org.project.models.interfaces.Identifiable;
 
 import java.util.UUID;
 
-public class Receiver implements Identifiable {
+public class Receiver implements Identifiable, Nameable, Contactable {
     private Integer id;
     private String name;
     private String surname;
     private String address;
     private String email;
-    private String password;
 
-    public Receiver(String email, String password, String name, String surname, String address) {
+    public Receiver(String email, String name, String surname, String address) {
         this.id = Math.abs(UUID.randomUUID().hashCode());
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.email = email;
-        this.password = password;
-        System.out.println("receiver oluşturuldu");
     }
 
     @Override
@@ -27,14 +26,16 @@ public class Receiver implements Identifiable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -47,38 +48,32 @@ public class Receiver implements Identifiable {
         this.surname = surname;
     }
 
+    @Override
     public String getAddress() {
         return address;
     }
 
+    @Override
     public void setAddress(String address) {
         this.address = address;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
 
+    @Override
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
-        return "Receiver{" +
-                "id=" + id +
+        return  "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\'';
     }
 }
